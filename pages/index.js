@@ -14,7 +14,9 @@ export default function Home({ exampleWeatherData }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Card weatherData={exampleWeatherData}></Card>
+      <div className="bg-gray-100 w-full min-h-screen flex-wrap flex justify-center items-center">
+        <Card weatherData={exampleWeatherData}></Card>
+      </div>
     </div>
   );
 }
