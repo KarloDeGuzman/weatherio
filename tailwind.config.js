@@ -4,7 +4,11 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      zIndex: {
+        '-1': '-1',
+      },
+    },
   },
   variants: {
     borderColor: ['responsive', 'hover', 'focus', 'focus-within'],
