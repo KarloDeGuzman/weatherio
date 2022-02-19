@@ -1,11 +1,16 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import Card from '../components/Card';
+import Card from '../components/Card/Card';
 import styles from '../styles/Home.module.css';
+import { useState, useEffect } from 'react';
 
-import { getExampleWeatherData } from '../lib/weather';
+import { getWeatherForecastData } from '../lib/weather';
+import SearchBox from '../components/SearchBox/SearchBox';
 
-export default function Home({ exampleWeatherData }) {
+export default function Home({ weatherData }) {
+  const [weatherForecastData, setWeatherForecastData] = useState('');
+  console.log('weatherData', weatherData);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -14,18 +19,28 @@ export default function Home({ exampleWeatherData }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="bg-gray-100 w-full min-h-screen flex-wrap flex justify-center items-center">
-        <Card weatherData={exampleWeatherData}></Card>
+      <div className="flex h-screen justify-center items-center">
+        <div className="w-4/5">
+          <div className="grid grid-rows-3 grid-cols-3">
+            <div className="col-start-2 col-end-2 col-span-3">
+              <SearchBox setWeatherForecast={setWeatherForecastData} />
+            </div>
+
+            <div className="row-start-2 col-start-2 col-end-2 col-span-3 justify-self-center">
+              <Card weatherData={weatherData} />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
 export async function getServerSideProps() {
-  const exampleWeatherData = getExampleWeatherData();
+  const weatherData = await getWeatherForecastData('Dublin');
   return {
     props: {
-      exampleWeatherData,
+      weatherData,
     },
   };
 }

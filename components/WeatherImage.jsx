@@ -9,7 +9,7 @@ export default function WeatherImage({ weatherStatus }) {
     case 'CloudySunny':
       weatherTypeSource = '/images/cloudy.png';
       break;
-    case 'Cloudy':
+    case 'Clouds':
       weatherTypeSource = '/images/cloud.png';
       break;
     case 'Fog':
