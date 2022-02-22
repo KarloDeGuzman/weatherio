@@ -8,7 +8,8 @@ import { getWeatherForecastData } from '../lib/weather';
 import SearchBox from '../components/SearchBox/SearchBox';
 
 export default function Home({ weatherData }) {
-  const [weatherForecastData, setWeatherForecastData] = useState('');
+  const [location, setLocation] = useState('');
+  const [weatherForecastData, setWeatherForecastData] = useState(weatherData);
   console.log('weatherData', weatherData);
 
   return (
@@ -19,15 +20,19 @@ export default function Home({ weatherData }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex h-screen justify-center items-center">
+      <div className="flex h-screen justify-center">
         <div className="w-4/5">
-          <div className="grid grid-rows-3 grid-cols-3">
-            <div className="col-start-2 col-end-2 col-span-3">
-              <SearchBox setWeatherForecast={setWeatherForecastData} />
+          <div className="grid grid-rows-3 grid-cols-3 h-screen">
+            <div className="col-start-2 col-end-2 col-span-3 place-self-stretch self-center">
+              <SearchBox
+                location={location}
+                setLocation={setLocation}
+                setWeatherForecastData={setWeatherForecastData}
+              />
             </div>
 
-            <div className="row-start-2 col-start-2 col-end-2 col-span-3 justify-self-center">
-              <Card weatherData={weatherData} />
+            <div className="row-start-2 col-start-2 col-end-2 col-span-3 place-self-center">
+              <Card weatherData={weatherForecastData} />
             </div>
           </div>
         </div>
