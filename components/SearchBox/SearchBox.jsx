@@ -22,7 +22,6 @@ function SearchBox({ location, setLocation }) {
         <input
           type="text"
           name="location"
-          type="search"
           defaultValue={usedLocation}
           ref={locationRef}
           placeholder=" "

@@ -12,6 +12,7 @@ export default function Home({ weatherData }) {
   const [weatherForecastData, setWeatherForecastData] = useState(weatherData);
 
   useEffect(() => {
+    if (location === weatherForecastData.name) return;
     async function fetchWeather() {
       const weatherForecast = await getWeatherForecastData(location);
       console.log('UseEffect weatherForecast', weatherForecast);
@@ -19,7 +20,7 @@ export default function Home({ weatherData }) {
     }
 
     fetchWeather();
-  }, [location]);
+  }, [location, weatherForecastData.name]);
 
   return (
     <div className={styles.container}>

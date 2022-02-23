@@ -5,6 +5,7 @@ export default function WeatherImage({ weatherStatus }) {
   const width = 120;
   let weatherTypeSource = '';
 
+  // Maybe add additional images for different scenarios
   switch (weatherStatus) {
     case 'CloudySunny':
       weatherTypeSource = '/images/cloudy.png';
@@ -19,6 +20,7 @@ export default function WeatherImage({ weatherStatus }) {
       weatherTypeSource = '/images/drizzle.png';
       break;
     case 'Raining':
+    case 'Rain':
       weatherTypeSource = '/images/rainy.png';
       break;
     case 'Sunny':
