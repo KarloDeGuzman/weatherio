@@ -8,9 +8,18 @@ import { getWeatherForecastData } from '../lib/weather';
 import SearchBox from '../components/SearchBox/SearchBox';
 
 export default function Home({ weatherData }) {
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState('Dublin');
   const [weatherForecastData, setWeatherForecastData] = useState(weatherData);
-  console.log('weatherData', weatherData);
+
+  useEffect(() => {
+    async function fetchWeather() {
+      const weatherForecast = await getWeatherForecastData(location);
+      console.log('UseEffect weatherForecast', weatherForecast);
+      setWeatherForecastData(weatherForecast);
+    }
+
+    fetchWeather();
+  }, [location]);
 
   return (
     <div className={styles.container}>
@@ -24,11 +33,7 @@ export default function Home({ weatherData }) {
         <div className="w-4/5">
           <div className="grid grid-rows-3 grid-cols-3 h-screen">
             <div className="col-start-2 col-end-2 col-span-3 place-self-stretch self-center">
-              <SearchBox
-                location={location}
-                setLocation={setLocation}
-                setWeatherForecastData={setWeatherForecastData}
-              />
+              <SearchBox location={location} setLocation={setLocation} />
             </div>
 
             <div className="row-start-2 col-start-2 col-end-2 col-span-3 place-self-center">

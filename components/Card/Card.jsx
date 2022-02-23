@@ -19,7 +19,7 @@ function Card({
       <WeatherImage weatherStatus={weatherType} />
       <p className="text-lg text-gray-600 mt-2 text-center">{description}</p>
       <p className="text-lg text-gray-600 mt-2 text-center">
-        Temperature: {temp}&#8451;
+        Temperature: {Math.round(temp)}&#8451;
       </p>
     </div>
   );
